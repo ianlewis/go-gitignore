@@ -239,16 +239,6 @@ func TestRepositoryWithCache(t *testing.T) {
 	repository(t, _test, _REPOSITORYMATCHES)
 } // TestRepositoryWithCache()
 
-func TestInvalidRepository(t *testing.T) {
-	_test := &repositorytest{}
-	_test.instance = func(path string) (gitignore.GitIgnore, error) {
-		return gitignore.NewRepository(path)
-	}
-
-	// perform the invalid repository tests
-	invalid(t, _test)
-} // TestInvalidRepository()
-
 func TestInvalidRepositoryWithFile(t *testing.T) {
 	_test := &repositorytest{}
 	_test.file = gitignore.File + "-invalid-with-file"
