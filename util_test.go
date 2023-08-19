@@ -67,7 +67,7 @@ func dir(content map[string]string) (string, error) {
 	}
 
 	// Return early if there is no content.
-	if content != nil {
+	if content == nil {
 		// return the temporary directory name
 		return _dir, nil
 	}
