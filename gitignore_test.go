@@ -277,11 +277,16 @@ func withfile(t *testing.T, test *gitignoretest, content string) {
 
 	// test NewFromFile() behaves as expected if the .gitgnore file does
 	// not exist
-	_err = os.Remove(_file.Name())
-	if _err != nil {
+	if err := _file.Close(); err != nil {
+		t.Fatalf(
+			"unable to close temporary .gitignore %s: %s",
+			_file.Name(), err.Error(),
+		)
+	}
+	if err := os.Remove(_file.Name()); err != nil {
 		t.Fatalf(
 			"unable to remove temporary .gitignore %s: %s",
-			_file.Name(), _err.Error(),
+			_file.Name(), err.Error(),
 		)
 	}
 	_ignore, _err = test.instance(_file.Name())
