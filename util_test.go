@@ -85,14 +85,14 @@ func dir(content map[string]string) (string, error) {
 		// should we create a directory or a file?
 		_isdir := false
 		_path := _key
-		if strings.HasSuffix(_path, "/") {
-			_path = strings.TrimSuffix(_path, "/")
+		if strings.HasSuffix(_path, filepath.Separator) {
+			_path = strings.TrimSuffix(_path, filepath.Separator)
 			_isdir = true
 		}
 
 		// construct the absolute path (according to the local file system)
 		_abs := _dir
-		_parts := strings.Split(_path, "/")
+		_parts := strings.Split(_path, filepath.Separator)
 		_last := len(_parts) - 1
 		if _isdir {
 			_abs = filepath.Join(_abs, filepath.Join(_parts...))
