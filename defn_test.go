@@ -42,15 +42,15 @@ type match struct {
 func (m match) Local() string {
 	_path := m.Path
 	if m.IsDir() {
-		_path = strings.TrimSuffix(m.Path, "/")
+		_path = strings.TrimSuffix(m.Path, string(filepath.Separator))
 	}
 
 	// generate the local representation of the match path
-	return filepath.Join(strings.Split(_path, "/")...)
+	return filepath.Join(strings.Split(_path, string(filepath.Separator))...)
 } // Local()
 
 func (m match) IsDir() bool {
-	return strings.HasSuffix(m.Path, "/")
+	return strings.HasSuffix(m.Path, string(filepath.Separator))
 } // IsDir()
 
 type position struct {
